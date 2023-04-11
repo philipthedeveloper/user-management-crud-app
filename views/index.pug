@@ -1,0 +1,62 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title CRUD Application
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    link(rel="stylesheet", href="css/style.css")
+    script(src="js/index.js" defer) 
+  body 
+
+    //- Header
+
+    header(id="header")
+      nav 
+        .container 
+          .text-center 
+            a(href="/" class="nav-brand text-dark") User Management System 
+    
+    //- /Header
+
+    //- Main
+
+    main#site-main 
+      .container 
+        .box-nav.d-flex.justify-between 
+          a(href="/add-user" class="border-shadow") 
+            span.text-gradient New User <i class="fa-solid fa-user"></i>
+
+        //- form handling
+
+        form(action="/", method="post") 
+          table.table
+            thead.thead-dark 
+              tr 
+                th ID 
+                th Name
+                th @Email
+                th Gender
+                th Status
+                th Action
+            each val, index in user
+              tbody 
+                tr 
+                  td #{index + 1}
+                  td #{val.name}
+                  td #{val.email}
+                  td #{val.gender}
+                  td #{val.status}
+                  td 
+                    a(href=`/update-user?id=${val._id}` class="btn border-shadow update")
+                      span.text-gradient    
+                        <i class="fa-solid fa-pencil"></i>
+
+                    a(class="btn border-shadow delete" data-id=`${val._id}`)
+                      span.text-gradient    
+                        <i class="fa-solid fa-xmark"></i>
+
+        //- /form handling
+
+    //- /Main

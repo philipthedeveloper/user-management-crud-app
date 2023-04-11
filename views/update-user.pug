@@ -1,0 +1,87 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title CRUD Application
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    link(rel="stylesheet", href="css/style.css")
+    script(src="js/index.js" defer) 
+  body 
+
+    //- Header
+
+    header(id="header")
+      nav 
+        .container 
+          .text-center 
+            a(href="/" class="nav-brand text-dark") User Management System 
+    
+    //- /Header
+
+    //- Main
+
+    main#site-main 
+      .container 
+        .box-nav.d-flex.justify-between 
+          .filter
+            a(href="/") <i class="fa-solid fa-angles-left"></i> All Users
+
+        .form-title.text-center 
+          h2.text-dark Update User 
+          span.text-light Use the below form to Update an account
+
+        //- form handling
+
+        form(method="PUT" id="update_user" data-id=`${user._id}`)
+          .new_user 
+            .form-group 
+              label(for="name" class="radio-label") Name 
+              //- input(type="hidden", name="id" value="") 
+              input(type="text", name="name" placeholder="Mark Stoenis" value=`${user.name}`)
+
+            .form-group 
+              label(for="email" class="radio-label") Email 
+              input(type="email", name="email" placeholder="example@gmail.com" value=`${user.email}`)
+
+            .form-group 
+              label(for="gender" class="radio-label") Gender
+
+              .radio.inline
+                if user.gender === "Male"
+                  input(type="radio", name="gender" value="Male" id="male" checked)
+                else 
+                  input(type="radio", name="gender" value="Male" id="male")
+                label(for="male" class="radio-label" valMal) Male 
+
+              .radio.inline
+                if user.gender === "Female"
+                  input(type="radio", name="gender" value="Female" id="female" checked)
+                else 
+                  input(type="radio", name="gender" value="Female" id="female")
+                label(for="female" class="radio-label" valFemale) Female
+
+            .form-group 
+              label(for="status" class="radio-label") Status
+
+              .radio.inline
+                if user.status === "Active"
+                  input(type="radio", name="status" value="Active" id="active"  checked)
+                else
+                  input(type="radio", name="status" value="Active" id="active" )
+                label(for="active" class="radio-label") Active 
+
+              .radio.inline
+                if user.status === "Inactive"
+                  input(type="radio", name="status" value="Inactive" id="inactive" checked)
+                else
+                  input(type="radio", name="status" value="Inactive" id="inactive")
+                label(for="inactive" class="radio-label" ) Inactive
+
+            .form-group 
+              button(type="submit" class="btn text-dark update") Save
+
+        //- /form handling
+
+    //- /Main
